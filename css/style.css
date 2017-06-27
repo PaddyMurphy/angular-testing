@@ -14,9 +14,10 @@ body{
 .asc:after {
   color: #0088CC;
   display: inline-block;
-  width: 0.5em;
   height: 0.5em;
+  padding-left: 0.25em;
   visibility: hidden;
+  width: 0.5em;
 }
 
 .desc.active:after,

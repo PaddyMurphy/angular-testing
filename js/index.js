@@ -1,10 +1,9 @@
 var myApp = angular.module('tk-demo', []);
 
-var suffixes = ['K','Mil'];
-
 myApp.controller('tableController', ['$scope', function ($scope){
   $scope.sortField = 'value'
   $scope.sort = 'asc'
+  $scope.rowsSanitized = []
   $scope.rows = [
     {name: 'Paul', value: 100.01},
     {name: 'John', value: ''},
@@ -16,6 +15,16 @@ myApp.controller('tableController', ['$scope', function ($scope){
     {name: 'Leslie', value: 12345},
     {name: 'Matthew', value: -4}
   ];
+
+  $scope.rows.forEach(function(d) {
+    var val = d.value;
+
+    if (typeof (d.value) !== 'number' || (d.value <= 0)) {
+      val = 0;
+    }
+
+    $scope.rowsSanitized.push({'name': d.name, 'value': val})
+  })
 }]);
 
 /*

@@ -16,20 +16,18 @@
 			<th>
 				<a
 					ng-click="sortField='name'; sort = !sort"
-					ng-class="{'asc': sort, 'desc': !sort, 'active': sortField === 'name'}">
-					Name
-				</a>
+					ng-class="{'asc': sort, 'desc': !sort, 'active': sortField === 'name'}">Name</a>
 			</th>
 			<th>
 				<a
 					ng-click="sortField='value'; sort = !sort"
-					ng-class="{'asc': sort, 'desc': !sort, 'active': sortField === 'value'}">
-					Value
-				</a>
+					ng-class="{'asc': sort, 'desc': !sort, 'active': sortField === 'value'}">Value</a>
 			</th>
 			<th>Actions</th>
 		</tr>
-		<tr ng-repeat="row in rows | orderBy:sortField:sort" ng-class="{'muted':isTemp($index)}">
+		<tr
+			ng-repeat="row in rowsSanitized | orderBy:sortField:sort"
+			ng-class="{'muted':isTemp($index)}">
 			<td>{{$index+1}}</td>
 			<td>{{row.name}}</td>
 			<td class="value">{{row.value | shortNumber}}</td>
