@@ -3,12 +3,15 @@ var myApp = angular.module('tk-demo', []);
 var suffixes = ['K','Mil'];
 
 myApp.controller('tableController', ['$scope', function ($scope){
+  $scope.sortField = 'value'
+  $scope.sort = 'asc'
   $scope.rows = [
     {name: 'Paul', value: 100.01},
     {name: 'John', value: ''},
     {name: 'Lucie', value: 12345678},
     {name: 'Patrick', value: 1234567},
     {name: 'Trump', value: 3534567890},
+    {name: 'Elon', value: 9534567890000},
     {name: 'Gary', value: 123456},
     {name: 'Leslie', value: 12345},
     {name: 'Matthew', value: -4}
@@ -28,6 +31,14 @@ to the Values column. This filter should do the following:
      given the suffix of 'Mil' (i.e. 4,356,000 should become 4.36Mil)
 
   c. non-numbers AND numbers less <= 0 should be displayed as '-'
+
+  Bonus challenge:
+
+  Add ascending and descending sorting to this Values column.
+  Clicking the column header should turn the sorting on and
+  toggle the asc/desc direction. The sorting function should
+  view non-numbers the same as zero.
+
 */
 
 // decimal rounding
@@ -43,7 +54,7 @@ myApp.filter('shortNumber', function() {
   // Create the return function and set the required parameter name to **input**
   return function(input) {
     var out = input;
-    var suffixes = ['', 'K', 'Mil', 'Bil']
+    var suffixes = ['', 'K', 'Mil', 'Bil', 'Tril']
     var length = Math.floor(input).toString().length;
     // determine which suffix belongs
     var suffixPos = Math.floor(length / 3 );

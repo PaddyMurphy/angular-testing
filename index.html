@@ -1,39 +1,51 @@
 <!DOCTYPE html>
 <html ng-app="tk-demo">
 <head>
-  <meta charset=utf-8 />
-  <title>Angular JS  - TK pre-interview base</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css">
+	<meta charset=utf-8 />
+	<title>Angular JS  - TK pre-interview base</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="css/style.css">
 </head>
 <body ng-controller="tableController">
-  <h2>{{rows.length}} Friend(s)</h2>
+	<h2>{{rows.length}} Friend(s)</h2>
 
-  <table class="table table-striped">
-    <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Value</th>
-      <th>Actions</th>
-    </tr>
-    <tr ng-repeat="row in rows | filter: search" ng-class="{'muted':isTemp($index)}">
-      <td>{{$index+1}}</td>
-      <td>{{row.name}}</td>
-      <td class="value">{{row.value | shortNumber}}</td>
-      <td>
-        <button class="btn btn-danger btn-mini" ng-click="deleteRow(row)" ng-hide="isTemp($index)"><i class="icon-trash icon-white"></i></button>
-      </td>
-    </tr>
-  </table>
+	<table class="table table-striped">
+		<tr>
+			<th>Id</th>
+			<th>
+				<a
+					ng-click="sortField='name'; sort = !sort"
+					ng-class="{'asc': sort, 'desc': !sort, 'active': sortField === 'name'}">
+					Name
+				</a>
+			</th>
+			<th>
+				<a
+					ng-click="sortField='value'; sort = !sort"
+					ng-class="{'asc': sort, 'desc': !sort, 'active': sortField === 'value'}">
+					Value
+				</a>
+			</th>
+			<th>Actions</th>
+		</tr>
+		<tr ng-repeat="row in rows | orderBy:sortField:sort" ng-class="{'muted':isTemp($index)}">
+			<td>{{$index+1}}</td>
+			<td>{{row.name}}</td>
+			<td class="value">{{row.value | shortNumber}}</td>
+			<td>
+				<button class="btn btn-danger btn-mini" ng-click="deleteRow(row)" ng-hide="isTemp($index)"><i class="icon-trash icon-white"></i></button>
+			</td>
+		</tr>
+	</table>
 
 </body>
 </html>
-  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.5/angular.min.js"></script>
+	<script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.5/angular.min.js"></script>
 
-  <script defer src="js/index.js"></script>
+	<script defer src="js/index.js"></script>
 
 </body>
 </html>
