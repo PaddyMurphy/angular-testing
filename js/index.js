@@ -13,7 +13,6 @@ myApp.controller('tableController', ['$scope', function ($scope){
     {name: 'Elon', value: 9534567890000},
     {name: 'Gary', value: 123456},
     {name: 'Leslie', value: 12345},
-    {name: 'Sarah', value: 1235},
     {name: 'Matthew', value: -4}
   ];
 
@@ -77,7 +76,7 @@ myApp.filter('shortNumber', function() {
     }
 
     // return numbers less than 1000
-    if (length < 4) {
+    if (length < 5) {
       return round(input, 2)
     }
 
