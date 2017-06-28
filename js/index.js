@@ -13,6 +13,7 @@ myApp.controller('tableController', ['$scope', function ($scope){
     {name: 'Elon', value: 9534567890000},
     {name: 'Gary', value: 123456},
     {name: 'Leslie', value: 12345},
+    {name: 'Sarah', value: 1235},
     {name: 'Matthew', value: -4}
   ];
 
@@ -66,7 +67,7 @@ myApp.filter('shortNumber', function() {
     var suffixes = ['', 'K', 'Mil', 'Bil', 'Tril']
     var length = Math.floor(input).toString().length;
     // determine which suffix belongs
-    var suffixPos = Math.floor(length / 3 );
+    var suffixPos = Math.floor(length / 3.001 );
     // abbreviate length
     var reduced = input / Math.pow(1000, suffixPos);
 
@@ -76,7 +77,7 @@ myApp.filter('shortNumber', function() {
     }
 
     // return numbers less than 1000
-    if (length < 5) {
+    if (length < 4) {
       return round(input, 2)
     }
 
