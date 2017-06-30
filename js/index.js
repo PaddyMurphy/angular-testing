@@ -2,7 +2,7 @@ var myApp = angular.module('tk-demo', []);
 
 myApp.controller('tableController', ['$scope', function ($scope){
   $scope.sortField = 'value'
-  $scope.sort = 'asc'
+  $scope.sort = 1
   $scope.rowsSanitized = []
   $scope.rows = [
     {name: 'Paul', value: 100.01},
@@ -54,20 +54,19 @@ to the Values column. This filter should do the following:
 // decimal rounding
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round
 function round (number, precision) {
-    var factor = Math.pow(10, precision);
-    var tempNumber = number * factor;
-    var roundedTempNumber = Math.round(tempNumber);
-    return roundedTempNumber / factor;
+  var factor = Math.pow(10, precision);
+  var tempNumber = number * factor;
+  var roundedTempNumber = Math.round(tempNumber);
+  return roundedTempNumber / factor;
 }
 
 myApp.filter('shortNumber', function() {
   // Create the return function and set the required parameter name to **input**
   return function(input) {
-    var out = input;
-    var suffixes = ['', 'K', 'Mil', 'Bil', 'Tril']
+    var suffixes = ['', 'K', 'Mil', 'Bil', 'Tril', 'Quad', 'Quin']
     var length = Math.floor(input).toString().length;
     // determine which suffix belongs
-    var suffixPos = Math.floor(length / 3.001 );
+    var suffixPos = Math.floor(length / 3.001);
     // abbreviate length
     var reduced = input / Math.pow(1000, suffixPos);
 
